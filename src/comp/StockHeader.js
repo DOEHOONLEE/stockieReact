@@ -76,10 +76,15 @@ function StockHeader() {
     }
 
     const onStockRefresh = () => {
-        console.log(state)
-        dispatch({
-            type: 'REFRESH_STOCK',
-        })
+        const stockCodePattern = new RegExp('^[A-Z]{2}[0-9]{6}[A-Z]{2}')
+        if (stockCodePattern.test(input)) {
+            dispatch({
+                type: 'REFRESH_STOCK',
+            })
+        } else {
+            alert('주식 코드를 정확히 입력해주세요.')
+            alert('나라코드.주식코드 => 예시: KR.035720.KS')
+        }
     }
 
     return (
